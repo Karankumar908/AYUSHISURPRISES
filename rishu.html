@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy New Year Rishu 🎉</title>
+
+<style>
+body,html{
+margin:0;
+padding:0;
+width:100%;
+height:100%;
+overflow:hidden;
+font-family:'Segoe UI',sans-serif;
+background:#000;
+color:white;
+}
+
+/* Fireworks canvas */
+#fireworks{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:1;
+}
+
+/* Card */
+.card{
+position:relative;
+z-index:10;
+width:90%;
+max-width:420px;
+margin:auto;
+top:50%;
+transform:translateY(-50%);
+background:rgba(0,0,0,0.65);
+padding:30px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 0 30px #00bfff;
+}
+
+h1{
+color:#00bfff;
+font-size:36px;
+margin-bottom:15px;
+}
+
+p{
+font-size:18px;
+line-height:1.6;
+}
+
+button{
+margin-top:20px;
+padding:12px 26px;
+font-size:17px;
+border:none;
+border-radius:30px;
+background:#00bfff;
+color:black;
+cursor:pointer;
+transition:0.3s;
+}
+button:hover{transform:scale(1.08);}
+
+/* Hearts */
+.heart{
+position:absolute;
+width:20px;height:20px;
+background:red;
+transform:rotate(45deg);
+top:100%;
+border-radius:5px;
+animation:float 3s linear forwards;
+}
+.heart:before,.heart:after{
+content:"";
+position:absolute;
+width:20px;height:20px;
+background:red;
+border-radius:50%;
+}
+.heart:before{top:-10px;left:0;}
+.heart:after{left:-10px;top:0;}
+@keyframes float{
+0%{transform:translateY(0) rotate(45deg);opacity:1;}
+100%{transform:translateY(-120vh) rotate(45deg);opacity:0;}
+}
+
+/* Stars */
+.star{
+position:absolute;
+width:3px;height:3px;
+background:white;
+border-radius:50%;
+animation:twinkle 2s infinite;
+}
+@keyframes twinkle{
+0%,100%{opacity:0.2;}
+50%{opacity:1;}
+}
+
+/* Confetti */
+.confetti{
+position:absolute;
+width:10px;height:10px;
+border-radius:50%;
+top:0;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<div class="card">
+<h1>Happy New Year Rishu 🎉</h1>
+
+<p>
+Dost ho to tum jaise ho 🤝<br>
+2025 mast tha,<br>
+2026 aur bhi dhamakedaar ho 🎆<br>
+Hamesha khush rehna 😄
+</p>
+
+<button onclick="msg()">Click karo 😄</button>
+</div>
+
+<audio id="music" autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<script>
+/* Popup message */
+function msg(){
+alert("😄 Happy New Year Rishu!\nDosti hamesha aise hi bani rahe 🎉");
+}
+
+/* Music volume */
+document.getElementById("music").volume=0.25;
+
+/* Hearts */
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.style.left=Math.random()*100+"%";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),3000);
+},500);
+
+/* Stars */
+for(let i=0;i<70;i++){
+let s=document.createElement("div");
+s.className="star";
+s.style.left=Math.random()*100+"%";
+s.style.top=Math.random()*100+"%";
+document.body.appendChild(s);
+}
+
+/* Confetti */
+setInterval(()=>{
+let c=document.createElement("div");
+c.className="confetti";
+c.style.left=Math.random()*100+"%";
+c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+document.body.appendChild(c);
+let fall=setInterval(()=>{
+let t=parseInt(c.style.top)||0;
+if(t>innerHeight){c.remove();clearInterval(fall);}
+else c.style.top=t+5+"px";
+},20);
+},200);
+
+/* Fireworks */
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+window.onresize=()=>{canvas.width=innerWidth;canvas.height=innerHeight;}
+
+class Particle{
+constructor(x,y,color){
+this.x=x;this.y=y;this.color=color;
+this.vx=(Math.random()-0.5)*6;
+this.vy=(Math.random()-0.5)*6;
+this.a=1;
+}
+update(){this.x+=this.vx;this.y+=this.vy;this.a-=0.02;}
+draw(){
+ctx.globalAlpha=this.a;
+ctx.fillStyle=this.color;
+ctx.beginPath();
+ctx.arc(this.x,this.y,2,0,Math.PI*2);
+ctx.fill();
+ctx.globalAlpha=1;
+}
+}
+let ps=[];
+function boom(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+if(Math.random()<0.05){
+let x=Math.random()*canvas.width;
+let y=Math.random()*canvas.height/2;
+let h=Math.random()*360;
+for(let i=0;i<50;i++) ps.push(new Particle(x,y,`hsl(${h},100%,50%)`));
+}
+ps.forEach((p,i)=>{
+p.update();p.draw();
+if(p.a<=0) ps.splice(i,1);
+});
+requestAnimationFrame(boom);
+}
+boom();
+</script>
+
+</body>
+</html>
