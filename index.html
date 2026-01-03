@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Ayushi ❤️</title>
+<title>Ayushi Proposal 💍</title>
 
 <style>
 html,body{
@@ -12,11 +12,11 @@ width:100%;
 height:100%;
 overflow:hidden;
 font-family:'Segoe UI',sans-serif;
-background:radial-gradient(circle at top, #2b003d, #000);
+background:radial-gradient(circle at top,#2b003d,#000);
 color:white;
 }
 
-/* 🎆 Fireworks */
+/* Fireworks */
 #fireworks{
 position:fixed;
 top:0;left:0;
@@ -24,7 +24,7 @@ width:100%;height:100%;
 z-index:1;
 }
 
-/* 💎 Card */
+/* Card */
 .card{
 position:relative;
 z-index:5;
@@ -43,37 +43,29 @@ backdrop-filter:blur(6px);
 
 h1{
 color:#ff4d6d;
-font-size:36px;
+font-size:34px;
 margin-bottom:10px;
 }
 
-/* 📸 PHOTO – PROPORTIONAL + CIRCLE + NEON + ZOOM */
+/* Photo with neon ring */
 .photo-wrap{
 width:170px;
 height:170px;
 margin:15px auto;
 border-radius:50%;
 padding:6px;
-background:conic-gradient(
-  #ff4d6d,
-  #ff9a9e,
-  #fad0c4,
-  #ff4d6d
-);
+background:conic-gradient(#ff4d6d,#ff9a9e,#fad0c4,#ff4d6d);
 animation:spin 6s linear infinite;
 }
-@keyframes spin{
-to{transform:rotate(360deg)}
-}
+@keyframes spin{to{transform:rotate(360deg)}}
 
 .photo{
 width:100%;
 height:100%;
 border-radius:50%;
-object-fit:contain;       /* ✅ proportional */
+object-fit:contain;
 background:#000;
-display:block;
-box-shadow:0 0 25px rgba(255,77,109,0.9);
+box-shadow:0 0 25px rgba(255,77,109,.9);
 animation:zoom 8s ease-in-out infinite;
 }
 @keyframes zoom{
@@ -83,10 +75,24 @@ animation:zoom 8s ease-in-out infinite;
 
 p{
 font-size:18px;
-line-height:1.7;
+line-height:1.6;
 }
 
-/* 💖 Hearts */
+/* Buttons */
+.btn{
+margin:10px;
+padding:12px 26px;
+font-size:16px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+transition:.3s;
+}
+.yes{background:#ff4d6d;color:white}
+.no{background:#444;color:white}
+.btn:hover{transform:scale(1.1)}
+
+/* Hearts */
 .heart{
 position:absolute;
 width:18px;height:18px;
@@ -103,13 +109,13 @@ width:18px;height:18px;
 background:#ff4d6d;
 border-radius:50%;
 }
-.heart:before{top:-9px;left:0}
-.heart:after{left:-9px;top:0}
+.heart:before{top:-9px}
+.heart:after{left:-9px}
 @keyframes float{
 to{transform:translateY(-120vh) rotate(45deg);opacity:0}
 }
 
-/* ✨ Stars */
+/* Stars */
 .star{
 position:absolute;
 width:3px;height:3px;
@@ -123,25 +129,10 @@ z-index:2;
 50%{opacity:1}
 }
 
-/* 🎵 Button */
-button{
-margin-top:18px;
-padding:12px 28px;
-font-size:17px;
-border:none;
-border-radius:30px;
-background:#ff4d6d;
-color:white;
-cursor:pointer;
-transition:.3s;
-}
-button:hover{transform:scale(1.1)}
-
 /* Hide YouTube */
 #music{
 position:absolute;
-width:1px;
-height:1px;
+width:1px;height:1px;
 opacity:0;
 pointer-events:none;
 }
@@ -159,24 +150,34 @@ pointer-events:none;
   <img src="ayushi.jpg" class="photo" alt="Ayushi">
 </div>
 
-<p>
+<p id="text">
 Jitni dafa tumse baat hoti hai,<br>
-Utni dafa dil ye muskuraata hai ✨<br><br>
-Happy New Year meri favourite feeling 💖
+Utni dafa dil muskuraata hai ✨<br><br>
+Ayushi, will you be mine forever? 💍
 </p>
 
-<button onclick="playSong()">Play our song 🎶</button>
+<div id="proposal">
+
+  <!-- ✅ YES BUTTON -->
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxO2nTUnIrh1Ol0Tfn1QyEwtQTAO3Q0MQ512pUZDesLpnQAg/viewform?usp=pp_url&entry.866051443=Yes" target="_blank">
+    <button class="btn yes" onclick="yesEffect()">YES ❤️</button>
+  </a>
+
+  <!-- ❌ NO BUTTON -->
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxO2nTUnIrh1Ol0Tfn1QyEwtQTAO3Q0MQ512pUZDesLpnQAg/viewform?usp=pp_url&entry.866051443=No" target="_blank">
+    <button class="btn no" onclick="noEffect()">NO 🙈</button>
+  </a>
+
+</div>
 </div>
 
-<!-- 🎵 JITNI DAFA – WORKING METHOD -->
-<iframe
-id="music"
+<!-- 🎵 Song -->
+<iframe id="music"
 src="https://www.youtube.com/embed/8ZK_S-46KwE?enablejsapi=1"
-allow="autoplay">
-</iframe>
+allow="autoplay"></iframe>
 
 <script>
-/* 💖 Hearts */
+/* Hearts */
 setInterval(()=>{
 let h=document.createElement("div");
 h.className="heart";
@@ -185,7 +186,7 @@ document.body.appendChild(h);
 setTimeout(()=>h.remove(),3000);
 },450);
 
-/* ✨ Stars */
+/* Stars */
 for(let i=0;i<70;i++){
 let s=document.createElement("div");
 s.className="star";
@@ -194,15 +195,25 @@ s.style.top=Math.random()*100+"%";
 document.body.appendChild(s);
 }
 
-/* 🎵 Play song */
+/* YES / NO effects */
+function yesEffect(){
+document.getElementById("text").innerHTML =
+"💖 She clicked YES 💖<br>Check your Gmail 😉";
+playSong();
+}
+
+function noEffect(){
+alert("🙈 NO dabaya gaya… par dil abhi bhi hopeful hai ❤️");
+}
+
+/* Play song */
 function playSong(){
 document.getElementById("music").contentWindow.postMessage(
-  '{"event":"command","func":"playVideo","args":""}',
-  '*'
+'{"event":"command","func":"playVideo","args":""}','*'
 );
 }
 
-/* 🎆 Fireworks */
+/* Fireworks */
 const canvas=document.getElementById("fireworks");
 const ctx=canvas.getContext("2d");
 canvas.width=innerWidth;canvas.height=innerHeight;
