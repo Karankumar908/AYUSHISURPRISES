@@ -5,23 +5,15 @@
 <title>Ayushi Proposal 💍</title>
 
 <style>
-/* 📸 PHOTO – NO ROTATION, ONLY SOFT ZOOM */
-.photo{
-  width:100%;
-  height:100%;
-  border-radius:50%;
-  object-fit:contain;
-  background:#000;
-  box-shadow:0 0 25px rgba(255,77,109,0.9);
-
-  /* ❌ rotation removed */
-  animation:zoom 8s ease-in-out infinite;
-}
-
-@keyframes zoom{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.05)}
-}
+html,body{
+margin:0;
+padding:0;
+width:100%;
+height:100%;
+overflow:hidden;
+font-family:'Segoe UI',sans-serif;
+background:radial-gradient(circle at top,#2b003d,#000);
+color:white;
 }
 
 /* Fireworks */
@@ -55,17 +47,15 @@ font-size:34px;
 margin-bottom:10px;
 }
 
-/* Photo with neon ring */
+/* PHOTO – STATIC (NO ROTATION) */
 .photo-wrap{
 width:170px;
 height:170px;
 margin:15px auto;
 border-radius:50%;
 padding:6px;
-background:conic-gradient(#ff4d6d,#ff9a9e,#fad0c4,#ff4d6d);
-animation:spin 6s linear infinite;
+background:linear-gradient(135deg,#ff4d6d,#ff9a9e,#fad0c4,#ff4d6d);
 }
-@keyframes spin{to{transform:rotate(360deg)}}
 
 .photo{
 width:100%;
@@ -73,12 +63,13 @@ height:100%;
 border-radius:50%;
 object-fit:contain;
 background:#000;
-box-shadow:0 0 25px rgba(255,77,109,.9);
+box-shadow:0 0 25px rgba(255,77,109,0.9);
 animation:zoom 8s ease-in-out infinite;
 }
+
 @keyframes zoom{
 0%,100%{transform:scale(1)}
-50%{transform:scale(1.06)}
+50%{transform:scale(1.05)}
 }
 
 p{
@@ -165,21 +156,16 @@ Ayushi, will you be mine forever? 💍
 </p>
 
 <div id="proposal">
-
-  <!-- ✅ YES BUTTON -->
   <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxO2nTUnIrh1Ol0Tfn1QyEwtQTAO3Q0MQ512pUZDesLpnQAg/viewform?usp=pp_url&entry.866051443=Yes" target="_blank">
     <button class="btn yes" onclick="yesEffect()">YES ❤️</button>
   </a>
-
-  <!-- ❌ NO BUTTON -->
   <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxO2nTUnIrh1Ol0Tfn1QyEwtQTAO3Q0MQ512pUZDesLpnQAg/viewform?usp=pp_url&entry.866051443=No" target="_blank">
     <button class="btn no" onclick="noEffect()">NO 🙈</button>
   </a>
-
 </div>
 </div>
 
-<!-- 🎵 Song -->
+<!-- Song -->
 <iframe id="music"
 src="https://www.youtube.com/embed/8ZK_S-46KwE?enablejsapi=1"
 allow="autoplay"></iframe>
@@ -211,7 +197,7 @@ playSong();
 }
 
 function noEffect(){
-alert("🙈 NO dabaya gaya… par dil abhi bhi hopeful hai ❤️");
+alert("🙈 NO dabaya gaya… par hope abhi zinda hai ❤️");
 }
 
 /* Play song */
