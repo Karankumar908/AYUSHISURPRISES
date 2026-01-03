@@ -12,16 +12,11 @@ width:100%;
 height:100%;
 overflow:hidden;
 font-family:'Segoe UI',sans-serif;
-background:#000;
+background:radial-gradient(circle at top, #2b003d, #000);
 color:white;
 }
 
-/* Background */
-body{
-background:radial-gradient(circle at top, #2b003d, #000);
-}
-
-/* Fireworks */
+/* 🎆 Fireworks */
 #fireworks{
 position:fixed;
 top:0;left:0;
@@ -29,7 +24,7 @@ width:100%;height:100%;
 z-index:1;
 }
 
-/* Card */
+/* 💎 Card */
 .card{
 position:relative;
 z-index:5;
@@ -52,18 +47,38 @@ font-size:36px;
 margin-bottom:10px;
 }
 
-/* Photo */
+/* 📸 PHOTO – PROPORTIONAL + CIRCLE + NEON + ZOOM */
+.photo-wrap{
+width:170px;
+height:170px;
+margin:15px auto;
+border-radius:50%;
+padding:6px;
+background:conic-gradient(
+  #ff4d6d,
+  #ff9a9e,
+  #fad0c4,
+  #ff4d6d
+);
+animation:spin 6s linear infinite;
+}
+@keyframes spin{
+to{transform:rotate(360deg)}
+}
+
 .photo{
-width:160px;
-border-radius:22px;
-margin:15px 0;
-box-shadow:0 0 25px rgba(255,77,109,.9);
-border:2px solid rgba(255,255,255,.4);
-animation:zoom 6s ease-in-out infinite;
+width:100%;
+height:100%;
+border-radius:50%;
+object-fit:contain;       /* ✅ proportional */
+background:#000;
+display:block;
+box-shadow:0 0 25px rgba(255,77,109,0.9);
+animation:zoom 8s ease-in-out infinite;
 }
 @keyframes zoom{
 0%,100%{transform:scale(1)}
-50%{transform:scale(1.05)}
+50%{transform:scale(1.06)}
 }
 
 p{
@@ -71,7 +86,7 @@ font-size:18px;
 line-height:1.7;
 }
 
-/* Hearts */
+/* 💖 Hearts */
 .heart{
 position:absolute;
 width:18px;height:18px;
@@ -94,7 +109,7 @@ border-radius:50%;
 to{transform:translateY(-120vh) rotate(45deg);opacity:0}
 }
 
-/* Stars */
+/* ✨ Stars */
 .star{
 position:absolute;
 width:3px;height:3px;
@@ -108,7 +123,7 @@ z-index:2;
 50%{opacity:1}
 }
 
-/* Button */
+/* 🎵 Button */
 button{
 margin-top:18px;
 padding:12px 28px;
@@ -140,7 +155,9 @@ pointer-events:none;
 <div class="card">
 <h1>Ayushi ❤️</h1>
 
-<img src="ayushi.jpg" class="photo" alt="Ayushi">
+<div class="photo-wrap">
+  <img src="ayushi.jpg" class="photo" alt="Ayushi">
+</div>
 
 <p>
 Jitni dafa tumse baat hoti hai,<br>
@@ -151,7 +168,7 @@ Happy New Year meri favourite feeling 💖
 <button onclick="playSong()">Play our song 🎶</button>
 </div>
 
-<!-- 🎵 JITNI DAFA (WORKING YouTube embed) -->
+<!-- 🎵 JITNI DAFA – WORKING METHOD -->
 <iframe
 id="music"
 src="https://www.youtube.com/embed/8ZK_S-46KwE?enablejsapi=1"
@@ -159,7 +176,7 @@ allow="autoplay">
 </iframe>
 
 <script>
-/* Hearts */
+/* 💖 Hearts */
 setInterval(()=>{
 let h=document.createElement("div");
 h.className="heart";
@@ -168,7 +185,7 @@ document.body.appendChild(h);
 setTimeout(()=>h.remove(),3000);
 },450);
 
-/* Stars */
+/* ✨ Stars */
 for(let i=0;i<70;i++){
 let s=document.createElement("div");
 s.className="star";
@@ -177,16 +194,15 @@ s.style.top=Math.random()*100+"%";
 document.body.appendChild(s);
 }
 
-/* Play song (user click required) */
+/* 🎵 Play song */
 function playSong(){
-const iframe=document.getElementById("music");
-iframe.contentWindow.postMessage(
+document.getElementById("music").contentWindow.postMessage(
   '{"event":"command","func":"playVideo","args":""}',
   '*'
 );
 }
 
-/* Fireworks */
+/* 🎆 Fireworks */
 const canvas=document.getElementById("fireworks");
 const ctx=canvas.getContext("2d");
 canvas.width=innerWidth;canvas.height=innerHeight;
