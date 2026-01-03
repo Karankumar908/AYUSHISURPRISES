@@ -5,15 +5,23 @@
 <title>Ayushi Proposal 💍</title>
 
 <style>
-html,body{
-margin:0;
-padding:0;
-width:100%;
-height:100%;
-overflow:hidden;
-font-family:'Segoe UI',sans-serif;
-background:radial-gradient(circle at top,#2b003d,#000);
-color:white;
+/* 📸 PHOTO – NO ROTATION, ONLY SOFT ZOOM */
+.photo{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  object-fit:contain;
+  background:#000;
+  box-shadow:0 0 25px rgba(255,77,109,0.9);
+
+  /* ❌ rotation removed */
+  animation:zoom 8s ease-in-out infinite;
+}
+
+@keyframes zoom{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.05)}
+}
 }
 
 /* Fireworks */
